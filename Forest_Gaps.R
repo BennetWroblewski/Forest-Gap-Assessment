@@ -28,6 +28,3 @@ hist(raster_test144_chm, main = "Canopy Height Distribution", plot = TRUE)
 raster_test144_chm[raster_test144_chm<0] = 0
 raster_test144_chm
 
-#just talking random bullshit to see changes
-
-blablablablablabla
