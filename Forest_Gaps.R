@@ -37,8 +37,4 @@ levelplot(raster_test144_chm, par.settings = GrTheme, main = "Canopy Height Mode
 
 #recalssify in forest/ non forest
 
-chm_reclassified <- raster_test144_chm
-chm_reclassified[chm_reclassified <= 1] = 0
-chm_reclassified[chm_reclassified > 1] = 1
-plot(chm_reclassified)
-levelplot(chm_reclassified, par.settings = RdBuTheme)
+
