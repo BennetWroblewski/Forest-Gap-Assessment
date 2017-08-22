@@ -1,5 +1,9 @@
 install.packages("tiff")
-library("rgdal")                 
+library("rgdal")      
+library("tiff")
+library("rgeos")
+library("raster")
+library("rasterVis")
 
 test_144 <- readTIFF("test144.tif")
 test_144_dtm <- readTIFF("test144_dtm_2nd_try.tif")
@@ -17,6 +21,7 @@ plot(raster_test144_dtm, main = "DTM")
 
 raster_test144_chm <- raster("test144_chm.tif")
 plot(raster_test144_chm, main = "Canopy Height Model")
+raster_test144_chm
 
 #canopy height distribution
 
@@ -27,4 +32,13 @@ hist(raster_test144_chm, main = "Canopy Height Distribution", plot = TRUE)
 #removing negative values 
 raster_test144_chm[raster_test144_chm<0] = 0
 raster_test144_chm
+#save as image:
+levelplot(raster_test144_chm, par.settings = GrTheme, main = "Canopy Height Model")
 
+#recalssify in forest/ non forest
+
+chm_reclassified <- raster_test144_chm
+chm_reclassified[chm_reclassified <= 1] = 0
+chm_reclassified[chm_reclassified > 1] = 1
+plot(chm_reclassified)
+levelplot(chm_reclassified, par.settings = RdBuTheme)
