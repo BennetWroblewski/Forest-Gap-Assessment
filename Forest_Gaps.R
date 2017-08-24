@@ -20,7 +20,7 @@ plot(raster_test144_dtm, main = "DTM")
 #create CHM by substracting DTM from DSM in qgis
 
 raster_test144_chm <- raster("test144_chm.tif")
-plot(raster_test144_chm, main = "Canopy Height Model")
+levelplot(raster_test144_chm, par.settings = GrTheme, main = "Canopy Height Model")
 raster_test144_chm
 
 #canopy height distribution
@@ -35,6 +35,11 @@ raster_test144_chm
 #save as image:
 levelplot(raster_test144_chm, par.settings = GrTheme, main = "Canopy Height Model")
 
-#recalssify in forest/ non forest
+#reclassify in forest/ non forest
 
+chm_reclassified <- raster_test144_chm
+chm_reclassified[chm_reclassified <= 2] = 0
+chm_reclassified[chm_reclassified > 2] = 1
+plot(chm_reclassified)
+levelplot(chm_reclassified, par.settings = RdBuTheme)
 
